@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI私教｜课件风格样张</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Archivo+Black&family=Bodoni+Moda:wght@600;700&family=Cormorant:wght@400;600&family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@500;700&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@500;800&family=Nunito:wght@500;700&family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&family=Source+Serif+4:wght@500;700&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=Work+Sans:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      color: var(--text, #1a1a1a);
+      background: var(--body-bg, #f8f6f1);
+      font-family: var(--body-font, "DM Sans", sans-serif);
+      overflow-x: hidden;
+    }
+    .stage {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: clamp(18px, 3vw, 42px);
+      background: var(--stage-bg, #2d2d2d);
+      position: relative;
+      overflow: hidden;
+    }
+    .brand {
+      position: fixed;
+      z-index: 20;
+      left: clamp(20px, 3vw, 42px);
+      top: clamp(16px, 2.4vw, 32px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0;
+      color: var(--brand-text, currentColor);
+      text-decoration: none;
+      font-size: clamp(15px, 1.25vw, 20px);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .brand img {
+      width: clamp(34px, 3vw, 54px);
+      height: clamp(34px, 3vw, 54px);
+      object-fit: contain;
+    }
+    .switcher {
+      position: fixed;
+      z-index: 20;
+      right: clamp(16px, 2.4vw, 32px);
+      top: clamp(14px, 2.2vw, 28px);
+      display: flex;
+      gap: 8px;
+      max-width: min(680px, calc(100vw - 220px));
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+    .switcher a {
+      color: var(--nav-text, #fff);
+      border: 1px solid color-mix(in srgb, var(--nav-text, #fff) 28%, transparent);
+      background: color-mix(in srgb, var(--nav-bg, #000) 40%, transparent);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .switcher a.active {
+      background: var(--accent, #98d4bb);
+      border-color: transparent;
+      color: var(--accent-text, #111);
+    }
+    .slide {
+      width: min(100vw, 177.78vh);
+      height: min(100vh, 56.25vw);
+      min-height: min(100vh, 56.25vw);
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      background: var(--slide-bg, #f8f6f1);
+      color: var(--text, #1a1a1a);
+      box-shadow: var(--shadow, 0 22px 70px rgba(0,0,0,.32));
+      border-radius: var(--radius, 0);
+      padding: clamp(48px, 5.5vw, 86px);
+      display: grid;
+      align-content: center;
+      gap: clamp(18px, 2.6vw, 34px);
+    }
+    .kicker {
+      width: max-content;
+      max-width: 100%;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: var(--kicker-border, 1px solid rgba(0,0,0,.15));
+      background: var(--kicker-bg, transparent);
+      color: var(--muted, #666);
+      font-size: clamp(15px, 1.35vw, 22px);
+      font-weight: 800;
+    }
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-family: var(--display-font, "Bodoni Moda", serif);
+      font-size: clamp(52px, 8.3vw, 132px);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      max-width: 34em;
+      margin: 0;
+      font-size: clamp(20px, 2vw, 34px);
+      line-height: 1.45;
+      font-weight: 700;
+      color: var(--muted, #666);
+    }
+    .diagram {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.4vw, 18px);
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+    .node {
+      min-width: clamp(90px, 9vw, 142px);
+      min-height: clamp(68px, 6.6vw, 104px);
+      display: grid;
+      place-items: center;
+      padding: 12px 16px;
+      border-radius: var(--node-radius, 18px);
+      background: var(--node-bg, #dcf3ed);
+      color: var(--node-text, #111);
+      font-size: clamp(17px, 1.45vw, 25px);
+      font-weight: 900;
+      text-align: center;
+      border: var(--node-border, 1px solid rgba(0,0,0,.1));
+      box-shadow: var(--node-shadow, none);
+    }
+    .arrow {
+      color: var(--arrow, #df6843);
+      font-size: clamp(26px, 2.6vw, 42px);
+      font-weight: 900;
+    }
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.5vw, 22px);
+      max-width: 920px;
+    }
+    .note {
+      min-height: clamp(84px, 8vw, 124px);
+      padding: clamp(14px, 1.6vw, 24px);
+      border-radius: var(--note-radius, 16px);
+      background: var(--note-bg, rgba(255,255,255,.72));
+      border: var(--note-border, 1px solid rgba(0,0,0,.1));
+      font-size: clamp(15px, 1.25vw, 20px);
+      line-height: 1.5;
+      font-weight: 700;
+    }
+    .accent-shape { position: absolute; pointer-events: none; }
+
+    body.notebook {
+      --stage-bg: #2d2d2d;
+      --slide-bg: #f8f6f1;
+      --text: #1a1a1a;
+      --muted: #6b6660;
+      --display-font: "Bodoni Moda", serif;
+      --body-font: "DM Sans", sans-serif;
+      --accent: #98d4bb;
+      --arrow: #de6947;
+      --brand-text: #f8f6f1;
+      --node-bg: #d9f0eb;
+      --radius: 0;
+    }
+    body.notebook .slide {
+      background-image:
+        linear-gradient(rgba(0,0,0,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    body.notebook .accent-shape.tabs {
+      right: 0;
+      top: 16%;
+      width: 46px;
+      height: 55%;
+      background: linear-gradient(#98d4bb 0 20%, #c7b8ea 20% 40%, #f4b8c5 40% 60%, #a8d8ea 60% 80%, #ffe6a7 80%);
+    }
+
+    body.bold {
+      --stage-bg: linear-gradient(135deg, #191919, #2e2e2e 48%, #161616);
+      --slide-bg: #1a1a1a;
+      --text: #fff;
+      --muted: #f5f0e9;
+      --display-font: "Archivo Black", sans-serif;
+      --body-font: "Space Grotesk", sans-serif;
+      --accent: #ff5722;
+      --accent-text: #111;
+      --nav-bg: #111;
+      --node-bg: #ff5722;
+      --node-text: #111;
+      --node-radius: 0;
+      --node-border: 0;
+      --arrow: #ff5722;
+      --note-bg: #ff5722;
+      --note-border: 0;
+      --note-radius: 0;
+      --kicker-border: 1px solid rgba(255,255,255,.25);
+      --brand-text: #fff;
+    }
+    body.bold h1 { max-width: 9ch; text-transform: uppercase; }
+    body.bold .subtitle { color: #fff; }
+
+    body.electric {
+      --stage-bg: #0a0a0a;
+      --slide-bg: linear-gradient(#fff 0 48%, #4361ee 48%);
+      --text: #0a0a0a;
+      --muted: #0a0a0a;
+      --display-font: "Manrope", sans-serif;
+      --body-font: "Manrope", sans-serif;
+      --accent: #4361ee;
+      --accent-text: #fff;
+      --node-bg: #0a0a0a;
+      --node-text: #fff;
+      --arrow: #0a0a0a;
+      --note-bg: rgba(255,255,255,.92);
+      --brand-text: #fff;
+    }
+    body.electric .slide::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 48%;
+      width: 16px;
+      height: 52%;
+      background: #0a0a0a;
+    }
+
+    body.voltage {
+      --stage-bg: #1a1a2e;
+      --slide-bg: linear-gradient(90deg, #0066ff 0 44%, #1a1a2e 44%);
+      --text: #fff;
+      --muted: #fff;
+      --display-font: "Syne", sans-serif;
+      --body-font: "Space Mono", monospace;
+      --accent: #d4ff00;
+      --accent-text: #111;
+      --node-bg: #d4ff00;
+      --node-text: #111;
+      --node-radius: 999px;
+      --arrow: #d4ff00;
+      --note-bg: rgba(212,255,0,.13);
+      --note-border: 1px solid rgba(212,255,0,.45);
+      --brand-text: #fff;
+    }
+    body.voltage .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity: .32;
+    }
+
+    body.botanical {
+      --stage-bg: #050505;
+      --slide-bg: #0f0f0f;
+      --text: #e8e4df;
+      --muted: #b8aea3;
+      --display-font: "Cormorant", serif;
+      --body-font: "IBM Plex Sans", sans-serif;
+      --accent: #d4a574;
+      --accent-text: #0f0f0f;
+      --node-bg: rgba(212,165,116,.16);
+      --node-text: #e8e4df;
+      --node-border: 1px solid rgba(212,165,116,.5);
+      --arrow: #d4a574;
+      --note-bg: rgba(255,255,255,.05);
+      --note-border: 1px solid rgba(212,165,116,.25);
+      --brand-text: #e8e4df;
+    }
+    body.botanical .orb1 {
+      width: 320px; height: 320px; border-radius: 50%;
+      right: -80px; top: -90px;
+      background: radial-gradient(circle, rgba(232,180,184,.55), transparent 68%);
+      filter: blur(18px);
+    }
+    body.botanical .orb2 {
+      width: 250px; height: 250px; border-radius: 50%;
+      left: 60px; bottom: -90px;
+      background: radial-gradient(circle, rgba(201,184,150,.42), transparent 68%);
+      filter: blur(16px);
+    }
+
+    body.pastel {
+      --stage-bg: #c8d9e6;
+      --slide-bg: #faf9f7;
+      --text: #17211b;
+      --muted: #5a7c6a;
+      --display-font: "Plus Jakarta Sans", sans-serif;
+      --body-font: "Plus Jakarta Sans", sans-serif;
+      --accent: #a8d4c4;
+      --accent-text: #17211b;
+      --node-bg: #f0b4d4;
+      --node-radius: 30px;
+      --arrow: #7c6aad;
+      --note-bg: #e8f2ee;
+      --note-border: 0;
+      --note-radius: 28px;
+      --brand-text: #17211b;
+    }
+    body.pastel .accent-shape.pills {
+      right: 28px;
+      top: 18%;
+      width: 34px;
+      height: 60%;
+      border-radius: 20px;
+      background: linear-gradient(#f0b4d4 0 18%, transparent 18% 22%, #a8d4c4 22% 48%, transparent 48% 52%, #9b8dc4 52% 84%, transparent 84% 88%, #5a7c6a 88%);
+    }
+
+    body.split {
+      --stage-bg: #f5e6dc;
+      --slide-bg: linear-gradient(90deg, #f5e6dc 0 50%, #e4dff0 50%);
+      --text: #1a1a1a;
+      --muted: #4c4540;
+      --display-font: "Outfit", sans-serif;
+      --body-font: "Outfit", sans-serif;
+      --accent: #c8f0d8;
+      --accent-text: #111;
+      --node-bg: #f0f0c8;
+      --node-radius: 999px;
+      --arrow: #111;
+      --note-bg: #f0d4e0;
+      --note-border: 0;
+      --note-radius: 999px;
+      --brand-text: #1a1a1a;
+    }
+    body.split .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 50%;
+      background-image: linear-gradient(rgba(0,0,0,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    body.vintage {
+      --stage-bg: #e8d4c0;
+      --slide-bg: #f5f3ee;
+      --text: #1a1a1a;
+      --muted: #555;
+      --display-font: "Fraunces", serif;
+      --body-font: "Work Sans", sans-serif;
+      --accent: #1a1a1a;
+      --accent-text: #fff;
+      --node-bg: transparent;
+      --node-border: 3px solid #1a1a1a;
+      --node-radius: 0;
+      --arrow: #1a1a1a;
+      --note-bg: transparent;
+      --note-border: 3px solid #1a1a1a;
+      --note-radius: 0;
+      --brand-text: #1a1a1a;
+    }
+    body.vintage .ring {
+      width: 220px; height: 220px; border-radius: 50%;
+      border: 3px solid #1a1a1a;
+      right: 12%; top: 13%;
+    }
+    body.vintage .slash {
+      width: 260px; height: 4px;
+      background: #1a1a1a;
+      right: 6%; bottom: 22%;
+      transform: rotate(-18deg);
+    }
+
+    body.swiss {
+      --stage-bg: #fff;
+      --slide-bg: #fff;
+      --text: #000;
+      --muted: #000;
+      --display-font: "Archivo", sans-serif;
+      --body-font: "Nunito", sans-serif;
+      --accent: #ff3300;
+      --accent-text: #fff;
+      --node-bg: #ff3300;
+      --node-text: #fff;
+      --node-radius: 0;
+      --node-border: 0;
+      --arrow: #ff3300;
+      --note-bg: #fff;
+      --note-border: 2px solid #000;
+      --note-radius: 0;
+      --brand-text: #000;
+      --shadow: none;
+    }
+    body.swiss .slide {
+      border: 2px solid #000;
+      background-image: linear-gradient(rgba(0,0,0,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    body.swiss h1 { max-width: 10ch; text-transform: uppercase; }
+
+    body.paper {
+      --stage-bg: #2a2520;
+      --slide-bg: #faf9f7;
+      --text: #1a1a1a;
+      --muted: #4f4641;
+      --display-font: "Cormorant Garamond", serif;
+      --body-font: "Source Serif 4", serif;
+      --accent: #c41e3a;
+      --accent-text: #fff;
+      --node-bg: #fff;
+      --node-border: 1px solid #c41e3a;
+      --node-radius: 0;
+      --arrow: #c41e3a;
+      --note-bg: #fff;
+      --note-border: 1px solid rgba(196,30,58,.45);
+      --note-radius: 0;
+      --brand-text: #faf9f7;
+    }
+    body.paper .subtitle::first-letter {
+      color: #c41e3a;
+      font-size: 1.8em;
+      font-weight: 700;
+    }
+
+    body.terminal {
+      --stage-bg: #010409;
+      --slide-bg: #0d1117;
+      --text: #39d353;
+      --muted: #b7f7c8;
+      --display-font: "JetBrains Mono", monospace;
+      --body-font: "JetBrains Mono", monospace;
+      --accent: #39d353;
+      --accent-text: #0d1117;
+      --node-bg: transparent;
+      --node-text: #39d353;
+      --node-border: 1px solid #39d353;
+      --node-radius: 0;
+      --arrow: #39d353;
+      --note-bg: rgba(57,211,83,.08);
+      --note-border: 1px solid rgba(57,211,83,.5);
+      --note-radius: 0;
+      --kicker-border: 1px solid #39d353;
+      --brand-text: #39d353;
+    }
+    body.terminal .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 4px);
+      pointer-events: none;
+    }
+    body.terminal h1::after { content: "_"; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    @media (max-width: 900px) {
+      .switcher {
+        left: 16px;
+        right: 16px;
+        top: auto;
+        bottom: 12px;
+        max-width: calc(100vw - 32px);
+      }
+      .brand { top: 12px; left: 16px; }
+      .notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="notebook">
+  <a class="brand" href="./">
+    <img src="assets/origin-ai-edu-logo.png" alt="原点智学">
+    <span>原点智学</span>
+  </a>
+  <nav class="switcher" aria-label="风格切换"></nav>
+  <main class="stage">
+    <section class="slide" aria-label="AI私教课件风格样张">
+      <div class="accent-shape tabs"></div>
+      <div class="accent-shape pills"></div>
+      <div class="accent-shape orb1"></div>
+      <div class="accent-shape orb2"></div>
+      <div class="accent-shape ring"></div>
+      <div class="accent-shape slash"></div>
+      <div class="kicker" id="styleName">Notebook Tabs</div>
+      <h1>AI私教课件风格样张</h1>
+      <p class="subtitle">同一节课内容，用不同视觉语言表达。重点看：标题气质、流程图可读性、家长和孩子是否愿意继续看。</p>
+      <div class="diagram" aria-label="示例流程">
+        <div class="node">看题</div>
+        <div class="arrow">→</div>
+        <div class="node">提问</div>
+        <div class="arrow">→</div>
+        <div class="node">验证</div>
+        <div class="arrow">→</div>
+        <div class="node">复盘</div>
+      </div>
+      <div class="notes">
+        <div class="note">例子：孩子问 AI“这题怎么做”，先让 AI 解释思路，不直接抄答案。</div>
+        <div class="note">流程：题干信息 → 我的想法 → AI 引导 → 回到题目检查。</div>
+        <div class="note">作业：提交一次真实对话截图，加一句家长观察。</div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const styles = [
+      ["notebook", "Notebook Tabs"],
+      ["bold", "Bold Signal"],
+      ["electric", "Electric Studio"],
+      ["voltage", "Creative Voltage"],
+      ["botanical", "Dark Botanical"],
+      ["pastel", "Pastel Geometry"],
+      ["split", "Split Pastel"],
+      ["vintage", "Vintage Editorial"],
+      ["swiss", "Swiss Modern"],
+      ["paper", "Paper & Ink"],
+      ["terminal", "Terminal Green"]
+    ];
+    const params = new URLSearchParams(location.search);
+    const selected = styles.some(([key]) => key === params.get("style")) ? params.get("style") : "notebook";
+    document.body.className = selected;
+    document.getElementById("styleName").textContent = styles.find(([key]) => key === selected)[1];
+    const nav = document.querySelector(".switcher");
+    nav.innerHTML = styles.map(([key, label]) => {
+      const active = key === selected ? " active" : "";
+      return `<a class="${active}" href="?style=${key}">${label}</a>`;
+    }).join("");
+  </script>
+</body>
+</html>
