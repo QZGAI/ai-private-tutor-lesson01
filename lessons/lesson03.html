@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第03课 第一次有效提问</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=DM+Sans:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .transcript-jump { position: fixed; right: clamp(.7rem,2vw,1.2rem); top: clamp(.7rem,2vw,1.2rem); z-index: 40; display: inline-flex; align-items: center; min-height: 2.35rem; padding: .45rem .75rem; border-radius: 999px; border: 1px solid rgba(248,246,241,.35); background: rgba(45,45,45,.76); color: #f8f6f1; font-size: clamp(.7rem,1vw,.85rem); font-weight: 900; text-decoration: none; }
+    html:fullscreen .transcript-jump { display: none; }
+    html, body { height: 100%; overflow-x: hidden; }
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+    :root {
+      --outer-bg: #2d2d2d; --paper: #f8f6f1; --ink: #1a1a1a; --muted: #6f6a62;
+      --line: rgba(26, 26, 26, .13); --mint: #9fd8c7; --lavender: #b8a9d9;
+      --pink: #f2a7b5; --sky: #93c6e8; --cream: #f2d98d; --orange: #e06c45;
+      --display: "Bodoni Moda", "Noto Serif SC", serif; --body: "DM Sans", "Noto Sans SC", sans-serif;
+    }
+    body { margin: 0; background: var(--outer-bg); color: var(--ink); font-family: var(--body); letter-spacing: 0; }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px); background-size: 42px 42px; opacity: .5; }
+    .slide { width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; scroll-snap-align: start; display: flex; flex-direction: column; position: relative; align-items: center; justify-content: center; padding: clamp(.75rem, 2vw, 1.4rem); }
+    .slide-content { flex: 1; display: flex; flex-direction: column; justify-content: center; width: min(1220px, 94vw); aspect-ratio: 16 / 9; max-height: min(88dvh, 760px); overflow: hidden; padding: clamp(1rem, 3.1vw, 3.55rem); background: linear-gradient(90deg, rgba(26,26,26,.04) 1px, transparent 1px), linear-gradient(rgba(26,26,26,.035) 1px, transparent 1px), var(--paper); background-size: 28px 28px; box-shadow: 0 2.2rem 6rem rgba(0,0,0,.34); position: relative; }
+    .slide-content::before { content: ""; position: absolute; left: clamp(2.4rem, 5vw, 4.2rem); top: 0; bottom: 0; width: 1px; background: rgba(224,108,69,.26); pointer-events: none; }
+    .tab-stack { position: absolute; right: 0; top: clamp(2rem, 7vh, 5rem); display: flex; flex-direction: column; gap: clamp(.38rem, 1vh, .7rem); z-index: 2; }
+    .tab-stack span { width: clamp(2rem, 5vw, 3.4rem); height: clamp(2.2rem, 8vh, 4.2rem); border: 1px solid rgba(26,26,26,.16); border-right: 0; box-shadow: 0 .45rem .9rem rgba(0,0,0,.12); }
+    .tab-stack span:nth-child(1) { background: var(--mint); } .tab-stack span:nth-child(2) { background: var(--lavender); } .tab-stack span:nth-child(3) { background: var(--pink); } .tab-stack span:nth-child(4) { background: var(--sky); } .tab-stack span:nth-child(5) { background: var(--cream); }
+    h1, h2, h3, p { margin: 0; } h1, h2 { font-family: var(--display); font-weight: 700; letter-spacing: 0; line-height: .98; } h1 { font-size: clamp(2.25rem, 7vw, 6.25rem); max-width: 13ch; } h2 { font-size: clamp(1.75rem, 4.9vw, 4.35rem); max-width: 15ch; } h3 { font-size: clamp(.95rem, 1.55vw, 1.28rem); line-height: 1.24; font-weight: 900; }
+    p, li, td, th, pre { font-size: clamp(.74rem, 1.02vw, .96rem); line-height: 1.43; }
+    pre { white-space: pre-wrap; margin: 0; font-family: var(--body); background: #fffdf7; border: 1px solid var(--line); padding: clamp(.75rem, 1.3vw, 1rem); max-height: 46vh; overflow: auto; }
+    .lead { max-width: 44rem; color: var(--muted); font-size: clamp(.96rem, 1.42vw, 1.22rem); line-height: 1.48; font-weight: 500; }
+    .topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: clamp(.55rem, 1.4vh, 1.1rem); }
+    .eyebrow { display: inline-flex; align-items: center; width: fit-content; min-height: 2rem; padding: .35rem .75rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.42); color: var(--muted); font-size: clamp(.6rem, .9vw, .78rem); font-weight: 800; }
+    .page-num { font-family: var(--display); font-size: clamp(1.15rem, 2.4vw, 1.9rem); color: rgba(26,26,26,.22); font-weight: 700; }
+    .stack { display: flex; flex-direction: column; gap: clamp(.55rem, 1.15vh, .95rem); min-height: 0; }
+    .hero-grid, .two-col, .compare { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(.8rem, 2.2vw, 2.1rem); align-items: center; min-height: 0; }
+    .three-col, .cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(.5rem, 1vw, .8rem); }
+    .note-card, .system-card, .bubble, .template-card { background: rgba(255,255,255,.5); border: 1px solid var(--line); padding: clamp(.68rem, 1.2vw, 1rem); box-shadow: 0 .8rem 1.8rem rgba(26,26,26,.06); min-height: 0; }
+    .system-card { aspect-ratio: 1; display: flex; flex-direction: column; justify-content: space-between; background: conic-gradient(from -90deg, var(--mint), var(--sky), var(--lavender), var(--pink), var(--cream), var(--mint)); }
+    .system-card strong { font-family: var(--display); font-size: clamp(1.8rem, 4.6vw, 4.1rem); line-height: 1; max-width: 7ch; }
+    .bullet-list { display: flex; flex-direction: column; gap: clamp(.28rem, .65vh, .55rem); margin: 0; padding-left: 1.1rem; } .bullet-list li::marker { color: var(--orange); }
+    .tint-mint { background: color-mix(in srgb, var(--mint) 34%, white); } .tint-pink { background: color-mix(in srgb, var(--pink) 26%, white); } .tint-cream { background: color-mix(in srgb, var(--cream) 38%, white); } .tint-sky { background: color-mix(in srgb, var(--sky) 30%, white); }
+    .flow-row, .loop-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(.32rem, .8vw, .65rem); }
+    .flow-row > b, .loop-row > b { color: var(--orange); font-family: var(--display); font-size: clamp(1.25rem, 2.4vw, 2rem); }
+    .loop-card { width: clamp(5rem, 9vw, 6.6rem); aspect-ratio: 1; display: grid; place-items: center; align-content: center; gap: .2rem; border-radius: 50%; border: 1px solid var(--line); background: color-mix(in srgb, var(--mint) 34%, white); box-shadow: 0 .8rem 1.8rem rgba(26,26,26,.06); text-align: center; }
+    .loop-card span { width: 1.35rem; height: 1.35rem; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: .62rem; font-weight: 900; }
+    .loop-card strong { font-size: clamp(.76rem, 1.12vw, .98rem); }
+    .wide-card { background: rgba(255,255,255,.48); border: 1px solid var(--line); padding: .85rem 1rem; }
+    .table-wrap { overflow: hidden; border: 1px solid var(--line); background: rgba(255,255,255,.44); } table { width: 100%; border-collapse: collapse; } th, td { padding: clamp(.42rem, .75vw, .62rem); border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; } th { background: rgba(159,216,199,.28); font-weight: 900; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: .45rem; } .tag-list span { background: color-mix(in srgb, var(--pink) 24%, white); border: 1px solid rgba(26,26,26,.13); border-radius: 999px; padding: .35rem .55rem; font-weight: 900; }
+    .step-ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; align-items: end; } .ladder { border: 1px solid var(--line); padding: 1rem; background: rgba(255,255,255,.5); } .ladder:nth-child(1) { min-height: 7rem; } .ladder:nth-child(2) { min-height: 9rem; } .ladder:nth-child(3) { min-height: 11rem; } .ladder b { font-family: var(--display); font-size: 2.6rem; color: var(--orange); }
+    .homework-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; } .task-card { border-left: .42rem solid var(--mint); }
+    .progress { position: fixed; left: 0; top: 0; height: .24rem; width: 100%; background: rgba(255,255,255,.08); z-index: 30; } .progress span { display: block; height: 100%; width: 6.25%; background: linear-gradient(90deg, var(--mint), var(--sky), var(--pink), var(--cream)); transition: width .25s ease; }
+    .nav { position: fixed; right: clamp(.7rem, 2vw, 1.2rem); bottom: clamp(.7rem, 2vw, 1.2rem); z-index: 20; display: flex; gap: .45rem; } .nav button { width: clamp(2.35rem, 4vw, 3rem); height: clamp(2.35rem, 4vw, 3rem); border-radius: 999px; border: 1px solid rgba(248,246,241,.35); background: rgba(45,45,45,.76); color: var(--paper); font-size: clamp(.9rem, 1.6vw, 1.2rem); cursor: pointer; }
+    .keyboard-hint { position: fixed; left: clamp(.7rem,2vw,1.2rem); bottom: clamp(.7rem,2vw,1.2rem); z-index: 20; color: rgba(248,246,241,.72); font-size: clamp(.62rem,1vw,.78rem); background: rgba(45,45,45,.58); border: 1px solid rgba(248,246,241,.16); border-radius: 999px; padding: .45rem .72rem; }
+    html:fullscreen, html:fullscreen body { background: var(--paper); }
+    html:fullscreen body::before { display: none; }
+    html:fullscreen .slide { padding: 0; background: var(--paper); }
+    html:fullscreen .slide-content { width: 100vw; height: 100dvh; max-height: none; aspect-ratio: auto; box-shadow: none; }
+    @media (max-width: 900px) { .slide-content { aspect-ratio: auto; min-height: calc(100dvh - 1.5rem); } .hero-grid, .two-col, .compare, .three-col, .cards-grid, .homework-grid, .step-ladder { grid-template-columns: 1fr; } .tab-stack { display: none; } .slide-content::before { left: 2rem; } }
+    @media (max-height: 650px) { .keyboard-hint { display: none; } h1 { font-size: clamp(1.8rem, 5vw, 3.4rem); } h2 { font-size: clamp(1.35rem, 3.6vw, 2.55rem); } p, li, td, th { font-size: clamp(.64rem, .88vw, .8rem); } .slide-content { max-height: 92dvh; } }
+  </style>
+</head>
+<body>
+  <a class="transcript-jump" href="../transcripts/lesson03.html">逐字稿</a>
+  <div class="progress"><span id="progressBar"></span></div>
+  <section class="slide" id="slide-1">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">AI私教 · 第03课</span><span class="page-num">01</span></div>
+    <div class="hero-grid"><div class="stack"><h1>第一次有效提问</h1><p class="lead">把“我不会”改成一个AI能理解、能回应、能引导的问题。</p><ul class="bullet-list"><li>本节成果：一条高质量提问</li><li>完成一次AI讲解对话</li><li>孩子用自己的话复述</li></ul></div><div class="system-card"><span>问法</span><strong>问法</strong><p>问题越清楚，反馈越有用</p></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-2">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">真实家庭场景</span><span class="page-num">02</span></div>
+    <div class="stack"><h2>AI讲了很多，孩子还是没听懂</h2><p class="lead">很多时候不是AI不能讲，而是孩子给的问题太空，AI只能泛泛地讲。</p><div class="compare"><div class="note-card tint-pink"><h3>孩子输入</h3><ul class="bullet-list"><li>讲一下分数除法。</li><li>这个阅读题怎么做？</li><li>现在完成时是什么？</li></ul></div><div class="note-card tint-sky"><h3>常见结果</h3><ul class="bullet-list"><li>AI输出一大段解释</li><li>孩子看完点头</li><li>换一道题还是不会</li></ul></div></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-3">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">核心判断</span><span class="page-num">03</span></div>
+    <div class="stack"><h2>回答多，不等于讲懂了</h2><p class="lead">有效提问的目标不是让AI说更多，而是让AI说到孩子的卡点上。</p><div class="compare"><div class="note-card tint-pink"><h3>低质量问题</h3><ul class="bullet-list"><li>没有年级</li><li>没有卡点</li><li>没有目标</li><li>没有输出要求</li></ul></div><div class="note-card tint-mint"><h3>高质量问题</h3><ul class="bullet-list"><li>说明自己是谁</li><li>说明学什么</li><li>说明卡在哪里</li><li>要求举例和检查</li></ul></div></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-4">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">提问漏斗</span><span class="page-num">04</span></div>
+    <div class="stack"><h2>问题质量决定回答质量</h2><p class="lead">问题越模糊，AI越容易给“看起来完整但不贴身”的回答。</p><div class="step-ladder"><div class="ladder"><b>1</b><h3>模糊问题</h3><p>讲一下分数除法</p></div><div class="ladder"><b>2</b><h3>补充背景</h3><p>我是五年级，刚学分数除法</p></div><div class="ladder"><b>3</b><h3>说出卡点</h3><p>不理解为什么除以分数要乘倒数</p></div><div class="ladder"><b>4</b><h3>提出输出</h3><p>用生活例子解释，再出2题检查</p></div></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-5">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">学习方法</span><span class="page-num">05</span></div>
+    <div class="stack"><h2>先说卡点，再找解释</h2><p class="lead">好学生不是一上来就问答案，而是先描述自己已经懂了什么、卡在哪里。</p><div class="loop-row"><div class="loop-card"><span>1</span><strong>我是谁</strong></div><b>→</b><div class="loop-card"><span>2</span><strong>学什么</strong></div><b>→</b><div class="loop-card"><span>3</span><strong>卡哪里</strong></div><b>→</b><div class="loop-card"><span>4</span><strong>想达到什么</strong></div><b>→</b><div class="loop-card"><span>5</span><strong>怎么检查</strong></div></div><div class="note-card tint-mint"><p>这5个信息，就是孩子第一次有效提问的骨架。</p></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-6">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">五要素模板</span><span class="page-num">06</span></div>
+    <div class="stack"><h2>有效提问五要素</h2><p class="lead">每次问AI前，先把这五块补齐。</p><div class="cards-grid"><div class="note-card"><h3>我是谁</h3><p>年级、教材版本、当前水平</p></div><div class="note-card"><h3>学什么</h3><p>具体知识点或题型</p></div><div class="note-card"><h3>卡哪里</h3><p>哪一步不懂，不要只说“不会”</p></div><div class="note-card"><h3>目标是什么</h3><p>听懂、会做、会复述、会迁移</p></div><div class="note-card"><h3>怎么输出</h3><p>举例、分步骤、追问、出题检查</p></div></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-7">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">错误示范</span><span class="page-num">07</span></div>
+    <div class="stack"><h2>坏问题：讲一下分数除法</h2><p class="lead">这个问题看起来很正常，但AI不知道孩子真正卡在哪里。</p><div class="note-card tint-pink"><h3>讲一下分数除法。</h3><div class="tag-list"><span>缺年级</span><span>缺卡点</span><span>缺目标</span><span>缺检查方式</span></div></div><div class="wide-card">AI可能会讲定义、公式和例题，但孩子不一定知道自己该听哪一段。</div></div>
+  </div>
+</section>
+<section class="slide" id="slide-8">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">正确示范</span><span class="page-num">08</span></div>
+    <div class="stack"><h2>好问题：让AI像老师一样对准卡点</h2><p class="lead">同样是分数除法，只要补齐背景和目标，AI的回答会明显更贴近孩子。</p><pre>我是五年级学生，正在学分数除法。我能记住“除以一个分数等于乘它的倒数”，但不理解为什么要这样做。
+
+请你不要直接堆公式，先用一个生活例子解释，再一步步问我两个问题，确认我有没有听懂。最后请出2道同类小题检查。</pre></div>
+  </div>
+</section>
+<section class="slide" id="slide-9">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">同题对比</span><span class="page-num">09</span></div>
+    <div class="stack"><h2>同一知识点，两种问法</h2><p class="lead">让孩子看见：不是AI突然变聪明了，是问题变清楚了。</p><div class="table-wrap"><table><thead><tr><th>维度</th><th>普通问法</th><th>有效提问</th></tr></thead><tbody><tr><td>输入</td><td>讲一下分数除法</td><td>我是五年级，卡在为什么乘倒数</td></tr><tr><td>AI回答</td><td>概念、公式、例题一大段</td><td>先举例，再追问，再练习</td></tr><tr><td>孩子参与</td><td>主要是阅读</td><td>需要回答、复述、做小题</td></tr><tr><td>学习证据</td><td>看过解释</td><td>留下复述和小测结果</td></tr></tbody></table></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-10">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">复述检查</span><span class="page-num">10</span></div>
+    <div class="stack"><h2>听懂不算会，说回来才算开始会</h2><p class="lead">孩子必须用自己的话复述，AI才有机会继续纠偏。</p><div class="loop-row"><div class="loop-card"><span>1</span><strong>AI讲解</strong></div><b>→</b><div class="loop-card"><span>2</span><strong>孩子复述</strong></div><b>→</b><div class="loop-card"><span>3</span><strong>AI指出偏差</strong></div><b>→</b><div class="loop-card"><span>4</span><strong>孩子再说一遍</strong></div><b>→</b><div class="loop-card"><span>5</span><strong>同类题检查</strong></div></div><div class="note-card tint-mint"><p>复述不是表演，是把“看懂”变成“说得出”。</p></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-11">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">跨学科例子</span><span class="page-num">11</span></div>
+    <div class="stack"><h2>语文和英语也能这样问</h2><p class="lead">有效提问不是数学专属，任何学科都可以用五要素。</p><div class="table-wrap"><table><thead><tr><th>学科</th><th>低质量问题</th><th>改成有效提问</th></tr></thead><tbody><tr><td>语文</td><td>这篇阅读怎么答？</td><td>我是初一，读不懂作者情感变化，请带我找3处依据。</td></tr><tr><td>英语</td><td>现在完成时是什么？</td><td>我是七年级，分不清一般过去时和现在完成时，请用3组句子对比。</td></tr><tr><td>作文</td><td>帮我改作文。</td><td>请只看开头是否吸引人，给我2个修改方向，不要代写全文。</td></tr></tbody></table></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-12">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">常见失败点</span><span class="page-num">12</span></div>
+    <div class="stack"><h2>别把一个问题问成一锅粥</h2><p class="lead">第一次有效提问，宁可小一点，也不要把所有需求塞进去。</p><div class="cards-grid"><div class="note-card tint-pink"><h3>没有年级</h3></div><div class="note-card tint-pink"><h3>没有卡点</h3></div><div class="note-card tint-pink"><h3>一次问太多</h3></div><div class="note-card tint-pink"><h3>让AI直接代写</h3></div><div class="note-card tint-pink"><h3>没有复述</h3></div><div class="note-card tint-pink"><h3>没有小测</h3></div></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-13">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">课堂练习</span><span class="page-num">13</span></div>
+    <div class="stack"><h2>把三句话改成好问题</h2><p class="lead">家长不用懂每个知识点，只要看孩子有没有补齐五要素。</p><div class="table-wrap"><table><tbody><tr><th>原句</th><td>讲一下分数除法。</td><th>改写</th><td>我是五年级，卡在为什么乘倒数，请用生活例子讲，并出2题检查。</td></tr><tr><th>原句</th><td>阅读题怎么答？</td><th>改写</th><td>我是六年级，找不到中心句，请带我从题干和原文各找一个依据。</td></tr><tr><th>原句</th><td>帮我改英语作文。</td><th>改写</th><td>请只检查时态和句子顺序，指出3处问题，让我自己改。</td></tr></tbody></table></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-14">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">课后打卡</span><span class="page-num">14</span></div>
+    <div class="stack"><h2>提交一条真正有用的问题</h2><p class="lead">打卡证据不是聊天截图本身，而是孩子有没有说清楚卡点并完成复述。</p><div class="homework-grid"><div class="note-card task-card"><h3>轻任务</h3><p>把一个“我不会”改成五要素问题。</p></div><div class="note-card task-card"><h3>标准任务</h3><p>完成一次AI讲解对话，并让孩子复述。</p></div><div class="note-card task-card"><h3>挑战任务</h3><p>让AI根据复述指出偏差，再出2道同类小题。</p></div></div><div class="note-card tint-sky"><p>提交：原问题、改写后问题、AI讲解截图、孩子复述、家长观察。</p></div></div>
+  </div>
+</section>
+<section class="slide" id="slide-15">
+  <div class="slide-content">
+    <div class="tab-stack"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="topline"><span class="eyebrow">下一节预告</span><span class="page-num">15</span></div>
+    <div class="hero-grid"><div class="stack"><h1>AI讲得好，也要学会验证</h1><p class="lead">下一节：防止AI胡说。我们会学习怎么判断AI回答是否可靠。</p><ul class="bullet-list"><li>这一节：问清楚</li><li>下一节：验清楚</li><li>成果：AI答案验证表</li></ul></div><div class="system-card"><span>第04课</span><strong>第04课</strong><p>验证、追问、交叉检查</p></div></div>
+  </div>
+</section>
+  <div class="keyboard-hint">方向键 / 空格翻页 · F 全屏</div>
+  <div class="nav"><button type="button" id="prevBtn" aria-label="上一页">‹</button><button type="button" id="nextBtn" aria-label="下一页">›</button><button type="button" id="fullBtn" aria-label="全屏">⛶</button></div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const progressBar = document.getElementById('progressBar');
+    let current = 0;
+    function update() { progressBar.style.width = ((current + 1) / slides.length * 100) + '%'; }
+    function goTo(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      slides[current].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      update();
+    }
+    async function toggleFullscreen() {
+      if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.();
+      else await document.exitFullscreen?.();
+    }
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+    document.getElementById('fullBtn').addEventListener('click', toggleFullscreen);
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowDown','ArrowRight','PageDown',' '].includes(event.key)) { event.preventDefault(); goTo(current + 1); }
+      if (['ArrowUp','ArrowLeft','PageUp'].includes(event.key)) { event.preventDefault(); goTo(current - 1); }
+      if (event.key.toLowerCase() === 'f') { event.preventDefault(); toggleFullscreen(); }
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { current = slides.indexOf(entry.target); update(); }
+      });
+    }, { threshold: .55 });
+    slides.forEach((slide) => observer.observe(slide));
+    update();
+  </script>
+</body>
+</html>

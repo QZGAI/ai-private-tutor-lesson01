@@ -237,6 +237,33 @@
       font-weight: 900;
       line-height: 1.28;
     }
+    .lesson-main {
+      display: grid;
+      gap: .38rem;
+      min-width: 0;
+    }
+    .lesson-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+    .lesson-actions a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.8rem;
+      padding: .28rem .55rem;
+      border: 1px solid rgba(26,26,26,.13);
+      border-radius: 999px;
+      background: rgba(255,255,255,.48);
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .lesson-actions a.primary {
+      background: var(--mint);
+      color: var(--ink);
+    }
     .status {
       white-space: nowrap;
       border: 1px solid rgba(26,26,26,.13);
@@ -293,10 +320,10 @@
           <article class="week">
             <div class="week-title"><h3>第1周：建立亲子 AI 学习认知</h3><span>01-04</span></div>
             <ol class="lesson-list">
-              <li class="lesson"><span class="lesson-num">01</span><a href="lessons/lesson01.html">AI不是答案机</a><span class="status live">可查看</span></li>
-              <li class="lesson"><span class="lesson-num">02</span><span class="lesson-title">清北八环学习法</span><span class="status">待上线</span></li>
-              <li class="lesson"><span class="lesson-num">03</span><span class="lesson-title">第一次有效提问</span><span class="status">待上线</span></li>
-              <li class="lesson"><span class="lesson-num">04</span><span class="lesson-title">防止AI胡说</span><span class="status">待上线</span></li>
+              <li class="lesson"><span class="lesson-num">01</span><span class="lesson-main"><span class="lesson-title">AI不是答案机</span><span class="lesson-actions"><a class="primary" href="lessons/lesson01.html">课件</a><a href="transcripts/lesson01.html">逐字稿</a></span></span><span class="status live">已上线</span></li>
+              <li class="lesson"><span class="lesson-num">02</span><span class="lesson-main"><span class="lesson-title">清北八环学习法</span><span class="lesson-actions"><a class="primary" href="lessons/lesson02.html">课件</a><a href="transcripts/lesson02.html">逐字稿</a></span></span><span class="status live">已上线</span></li>
+              <li class="lesson"><span class="lesson-num">03</span><span class="lesson-main"><span class="lesson-title">第一次有效提问</span><span class="lesson-actions"><a class="primary" href="lessons/lesson03.html">课件</a><a href="transcripts/lesson03.html">逐字稿</a></span></span><span class="status live">已上线</span></li>
+              <li class="lesson"><span class="lesson-num">04</span><span class="lesson-main"><span class="lesson-title">防止AI胡说</span><span class="lesson-actions"><a class="primary" href="lessons/lesson04.html">课件</a><a href="transcripts/lesson04.html">逐字稿</a></span></span><span class="status live">已上线</span></li>
             </ol>
           </article>
 
@@ -331,7 +358,7 @@
           </article>
         </div>
         <div class="note">
-          <p><strong>当前开放：</strong>第01课《AI不是答案机》。后续课件完成审核后，会逐步加入可点击入口。</p>
+          <p><strong>当前开放：</strong>第01-04课。每节课均可查看课件与逐字稿；后续课件完成审核后，会逐步加入可点击入口。</p>
         </div>
       </section>
     </div>
